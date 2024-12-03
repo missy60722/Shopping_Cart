@@ -21,9 +21,9 @@ class ShoppingCart:
         for item in self.shopping_cart:
             if item['id'] == product_id:
                 self.shopping_cart.remove(item)
-                print(f"\n{item['name']} 已從購物車移除。")
+                print(f"商品 {product_id} 已從購物車刪除。")
                 return
-        print("\n商品編號不存在於購物車內。")
+        print("商品編號不存在於購物車內。")
 
     def view_cart(self):
         if not self.shopping_cart:

@@ -116,9 +116,10 @@ class TestShoppingCart(unittest.TestCase):
 
     # 測試刪除不存在於購物車內的商品
     def test_remove_invalid_product(self):
-        self.cart.remove_from_cart(3)
-        self.assertIn(1, [item['id'] for item in self.cart.shopping_cart])
-        self.assertIn(2, [item['id'] for item in self.cart.shopping_cart])
+        # 確認初始購物車內容
+        initial_cart_ids = [item['id'] for item in self.cart.shopping_cart]
+        self.cart.remove_from_cart(3)  # 商品編號 3 不在購物車中
+        self.assertEqual(initial_cart_ids, [item['id'] for item in self.cart.shopping_cart])  # 購物車應保持不變
 
     def test_checkBalance(self):
         cart = self.cart
