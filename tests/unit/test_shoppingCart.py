@@ -109,6 +109,17 @@ class TestShoppingCart(unittest.TestCase):
         self.assertEqual(cart.products[2]['quantity'], 2)
         self.assertEqual(cart.user_balance, 70.0)
 
+    # 測試刪除存在於購物車內的商品
+    def test_remove_valid_product(self):
+        self.cart.remove_from_cart(1)
+        self.assertNotIn(1, [item['id'] for item in self.cart.shopping_cart])
+
+    # 測試刪除不存在於購物車內的商品
+    def test_remove_invalid_product(self):
+        self.cart.remove_from_cart(3)
+        self.assertIn(1, [item['id'] for item in self.cart.shopping_cart])
+        self.assertIn(2, [item['id'] for item in self.cart.shopping_cart])
+
     def test_checkBalance(self):
         cart = self.cart
         expected_output = "\n剩餘餘額: $100.0\n"
